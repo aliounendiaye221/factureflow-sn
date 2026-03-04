@@ -32,14 +32,14 @@ export default async function DashboardLayout({
   const agencyIdForLookup = existingRole?.agency_id ?? user.id
 
   if (!existingRole || existingRole.agency_id === user.id) {
-    const { data: agency } = await supabase
+    const { data: agency } = await supabaseAdmin
       .from('agencies')
       .select('id')
       .eq('id', user.id)
       .maybeSingle()
 
     if (!agency) {
-      await supabase.from('agencies').upsert({
+      await supabaseAdmin.from('agencies').upsert({
         id: user.id,
         name: user.user_metadata?.agency_name || user.email?.split('@')[0] || 'Mon Agence',
       })
