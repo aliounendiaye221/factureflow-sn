@@ -1,0 +1,65 @@
+# Dépendances
+/node_modules
+/.pnp
+.pnp.js
+
+# Test
+/coverage
+
+# Next.js
+/.next/
+/out/
+
+# Production
+/build
+
+# Variables d'environnement — NE JAMAIS COMMITER
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Éditeurs
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# Fichiers temporaires d'audit
+output.txt
+migration-result.txt
+ts_errors.txt
+tmp_samafacture/
+
+# Vercel
+.vercel
+
+# Logs de build locaux
+build_output.log
+build_output.txt
+
+# Scripts de migration one-shot (racine)
+apply-catalog-migration-v2.js
+apply-catalog-migration.js
+apply-full-schema.js
+apply-sequences.js
+apply-template-migration.js
+fix-rls.js
+migrate.js
+script.js
+ajouter_option_tva.sql
+reparation_agencies.sql
+reparation_base_de_donnees.sql
+supabase-schema.sql
+temp_fix_notes.sql
