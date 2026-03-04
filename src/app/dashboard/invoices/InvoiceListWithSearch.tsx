@@ -92,7 +92,7 @@ export default function InvoiceListWithSearch({
                       <td className="px-6 py-4 whitespace-nowrap font-bold text-blue-600">
                         {inv.invoice_number}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium truncate max-w-[150px]">
+                      <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium truncate max-w-[100px] md:max-w-[150px]">
                         {inv.client?.name ?? '-'}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-gray-500">

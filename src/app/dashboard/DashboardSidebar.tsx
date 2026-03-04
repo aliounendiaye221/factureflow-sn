@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect, useCallback } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
@@ -7,7 +8,7 @@ import type { LucideProps } from 'lucide-react'
 import {
   LayoutDashboard, Users, FileText, FileSpreadsheet, Settings, LogOut,
   CheckCircle, ShieldAlert, CreditCard, PlayCircle, Package,
-  ChevronRight, Book
+  ChevronRight, Book, Menu, X
 } from 'lucide-react'
 import { getRoleBadge, getRoleColor } from '@/lib/roles'
 
@@ -42,6 +43,18 @@ const GROUP_LABELS: Record<string, string> = {
 export default function DashboardSidebar({ agencyName, userRole }: { agencyName: string; userRole: string }) {
   const pathname = usePathname()
   const supabase = createClient()
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  // Fermer le drawer quand on navigue
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
+
+  // Bloquer le scroll du body quand le drawer est ouvert
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
@@ -60,17 +73,26 @@ export default function DashboardSidebar({ agencyName, userRole }: { agencyName:
     items: visibleNavItems.filter(i => i.group === g),
   })).filter(g => g.items.length > 0)
 
-  return (
-    <aside className="w-72 bg-white flex flex-col border-r border-gray-200 min-h-screen overflow-y-auto">
-
+  const sidebarContent = (
+    <>
       {/* ── Logo / Brand ── */}
       <div className="px-5 pt-6 pb-4">
-        <Link href="/" className="flex items-center gap-2.5 mb-1 hover:opacity-80 transition-opacity">
-          <div className="bg-primary text-white p-1.5 rounded-lg shadow-sm">
-            <CheckCircle className="w-5 h-5" />
-          </div>
-          <h1 className="text-xl font-bold text-gray-900 tracking-tight">FactureFlow</h1>
-        </Link>
+        <div className="flex items-center justify-between">
+          <Link href="/" className="flex items-center gap-2.5 hover:opacity-80 transition-opacity">
+            <div className="bg-primary text-white p-1.5 rounded-lg shadow-sm">
+              <CheckCircle className="w-5 h-5" />
+            </div>
+            <h1 className="text-xl font-bold text-gray-900 tracking-tight">FactureFlow</h1>
+          </Link>
+          {/* Bouton fermer — mobile uniquement */}
+          <button
+            type="button"
+            onClick={() => setMobileOpen(false)}
+            className="lg:hidden p-1.5 rounded-lg text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
 
         {agencyName && (
           <div className="mt-3 flex items-center justify-between gap-2 bg-gray-50 px-3 py-2 rounded-xl border border-gray-100">
@@ -83,7 +105,7 @@ export default function DashboardSidebar({ agencyName, userRole }: { agencyName:
       </div>
 
       {/* ── Navigation ── */}
-      <nav className="flex-1 px-3 pb-4 space-y-5">
+      <nav className="flex-1 px-3 pb-4 space-y-5 overflow-y-auto">
         {grouped.map(({ key, label, items }) => (
           <div key={key}>
             {label && (
@@ -133,6 +155,49 @@ export default function DashboardSidebar({ agencyName, userRole }: { agencyName:
           Déconnexion
         </button>
       </div>
-    </aside>
+    </>
+  )
+
+  return (
+    <>
+      {/* ═══ Mobile Top Bar ═══ */}
+      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 bg-white border-b border-gray-200 px-4 py-3 flex items-center justify-between">
+        <button
+          type="button"
+          onClick={() => setMobileOpen(true)}
+          className="p-2 -ml-2 rounded-lg text-gray-600 hover:bg-gray-100 transition-colors"
+          aria-label="Ouvrir le menu"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+        <Link href="/" className="flex items-center gap-2">
+          <div className="bg-primary text-white p-1 rounded-md">
+            <CheckCircle className="w-4 h-4" />
+          </div>
+          <span className="font-bold text-gray-900 text-base">FactureFlow</span>
+        </Link>
+        <div className="w-10" /> {/* Spacer pour centrer le logo */}
+      </div>
+
+      {/* ═══ Mobile Drawer Overlay ═══ */}
+      {mobileOpen && (
+        <div className="lg:hidden fixed inset-0 z-50">
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            onClick={() => setMobileOpen(false)}
+          />
+          {/* Drawer */}
+          <aside className="absolute left-0 top-0 bottom-0 w-72 bg-white flex flex-col shadow-2xl animate-slide-in-left">
+            {sidebarContent}
+          </aside>
+        </div>
+      )}
+
+      {/* ═══ Desktop Sidebar ═══ */}
+      <aside className="hidden lg:flex w-72 bg-white flex-col border-r border-gray-200 min-h-screen overflow-y-auto">
+        {sidebarContent}
+      </aside>
+    </>
   )
 }

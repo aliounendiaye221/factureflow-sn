@@ -105,7 +105,7 @@ export default async function DashboardPage() {
             </div>
             <span className="text-slate-500 text-sm font-semibold uppercase tracking-wider">Montant total à encaisser</span>
           </div>
-          <p className="text-5xl md:text-6xl font-black text-slate-900 tracking-tight tabular-nums">
+          <p className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-slate-900 tracking-tight tabular-nums">
             {formatXOF(stats.unpaidTotal)}
           </p>
           <p className="text-slate-500 text-sm mt-3 font-medium">

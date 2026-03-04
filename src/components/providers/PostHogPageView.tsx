@@ -20,6 +20,15 @@ export default function PostHogPageView() {
                 $current_url: url,
             })
         }
+
+        // Track côté serveur pour le super admin
+        if (pathname?.startsWith('/dashboard')) {
+            fetch('/api/track', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ path: pathname }),
+            }).catch(() => {})
+        }
     }, [pathname, searchParams, posthog])
 
     return null

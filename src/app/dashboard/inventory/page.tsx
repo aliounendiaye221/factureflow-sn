@@ -62,13 +62,14 @@ export default async function InventoryPage() {
                         <h2 className="text-lg font-bold text-gray-800">Factures Réglées</h2>
                     </div>
                     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-gray-50 border-b border-gray-100">
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Numéro</th>
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Client</th>
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Date Paiement</th>
-                                    <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Montant</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Numéro</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Client</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Date Paiement</th>
+                                    <th className="px-4 md:px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Montant</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-50">
@@ -92,6 +93,7 @@ export default async function InventoryPage() {
                                 )}
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </section>
 
@@ -101,13 +103,14 @@ export default async function InventoryPage() {
                         <h2 className="text-lg font-bold text-gray-800">Devis Acceptés</h2>
                     </div>
                     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                        <div className="overflow-x-auto">
                         <table className="w-full text-left border-collapse">
                             <thead>
                                 <tr className="bg-gray-50 border-b border-gray-100">
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Numéro</th>
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Client</th>
-                                    <th className="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Statut</th>
-                                    <th className="px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Montant</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Numéro</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500">Client</th>
+                                    <th className="px-4 md:px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Statut</th>
+                                    <th className="px-4 md:px-6 py-4 text-right text-xs font-bold uppercase tracking-wider text-gray-500">Montant</th>
                                 </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-50">
@@ -133,6 +136,7 @@ export default async function InventoryPage() {
                                 )}
                             </tbody>
                         </table>
+                        </div>
                     </div>
                 </section>
             </div>

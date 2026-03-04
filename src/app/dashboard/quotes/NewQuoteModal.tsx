@@ -287,7 +287,7 @@ export default function NewQuoteModal({
                         )}
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3 col-span-1 md:col-span-6 relative">
+                      <div className="grid grid-cols-3 gap-2 md:gap-3 col-span-1 md:col-span-6 relative">
                         <div className="relative">
                           <span className="absolute -top-5 left-1 text-[10px] text-gray-400 font-medium md:hidden uppercase">Qté</span>
                           <input
