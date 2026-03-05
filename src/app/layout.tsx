@@ -19,14 +19,27 @@ const plusJakarta = Plus_Jakarta_Sans({
 })
 
 export const metadata: Metadata = {
-  title: 'FactureFlow SN — Facturation & Encaissement Mobile Money',
-  description: 'Créez vos devis et factures professionnels, encaissez par Wave et Orange Money au Sénégal. La solution de facturation B2B pour PME et agences africaines.',
-  keywords: ['facturation', 'devis', 'Sénégal', 'Wave', 'Orange Money', 'PME', 'agence'],
+  title: 'FactureFlow SN — Facturation conforme DGID & Paiement Wave pour PME Sénégalaises',
+  description: 'Créez devis et factures professionnels conformes DGID en 2 minutes. Encaissez par Wave et Orange Money. Relances WhatsApp, catalogue produits, gestion d\'équipe et Livre d\'Inventaire. Le logiciel de facturation N°1 pour les PME au Sénégal.',
+  keywords: ['facturation Sénégal', 'logiciel facturation PME', 'facture DGID', 'devis Wave', 'Orange Money facturation', 'NINEA RCCM', 'TVA 18 Sénégal', 'facturation B2B Afrique', 'factureflow', 'relance WhatsApp facture', 'paiement mobile money', 'comptabilité PME Dakar'],
   openGraph: {
-    title: 'FactureFlow SN',
-    description: 'Devis, factures et paiements Mobile Money pour les PME africaines.',
+    title: 'FactureFlow SN — Facturez et encaissez par Wave / Orange Money',
+    description: 'Devis en 2 min, paiement Wave en 1 clic, conformité DGID garantie. Le logiciel de facturation conçu pour les PME sénégalaises.',
     locale: 'fr_SN',
     type: 'website',
+    siteName: 'FactureFlow SN',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FactureFlow SN — Facturation & Paiement Mobile Money',
+    description: 'Créez vos factures conformes DGID et encaissez par Wave / Orange Money. Gratuit pour démarrer.',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: 'https://factureflow-sn.vercel.app',
   },
 }
 

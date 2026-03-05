@@ -1,5 +1,6 @@
 import { ShieldCheck, CheckCircle2 } from 'lucide-react'
 import type { InvoiceTemplateProps } from '@/types/invoiceTemplate'
+import PaymentQRCode from '@/components/PaymentQRCode'
 
 function fmt(n: number) {
     return new Intl.NumberFormat('fr-SN', { style: 'currency', currency: 'XOF', maximumFractionDigits: 0 }).format(n)
@@ -151,11 +152,32 @@ export default function EliteTemplate({ invoice, agency, statusConfig, document_
 
                 {/* ── Infos paiement (Facture) ── */}
                 {isInvoice && (
-                    <div className="mb-3 bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600 space-y-0.5">
-                        <p><span className="font-bold text-slate-800">Paiement :</span> {invoice.payment_terms || 'Wave / Orange Money / Virement / Espèces'}</p>
-                        {invoice.due_date && <p><span className="font-bold text-slate-800">Échéance :</span> {fmtDateLong(invoice.due_date)}</p>}
-                        {invoice.quote_number && <p><span className="font-bold text-slate-800">Réf. devis :</span> {invoice.quote_number}</p>}
-                        {invoice.notes && <p><span className="font-bold text-slate-800">Notes :</span> {invoice.notes}</p>}
+                    <div className="mb-3 bg-slate-50 border border-slate-200 rounded-lg p-3 text-xs text-slate-600">
+                        <div className="flex justify-between items-start gap-3">
+                            <div className="space-y-0.5 flex-1">
+                                <p className="font-bold text-slate-800 mb-1">Modes de paiement :</p>
+                                {agency?.wave_number && <p>Wave : <span className="font-mono font-semibold text-slate-900">{agency.wave_number}</span></p>}
+                                {agency?.om_number && <p>Orange Money : <span className="font-mono font-semibold text-slate-900">{agency.om_number}</span></p>}
+                                {agency?.bank_name && agency?.bank_iban && (
+                                    <p>Virement : <span className="font-semibold text-slate-900">{agency.bank_name}</span> — <span className="font-mono text-[11px]">{agency.bank_iban}</span></p>
+                                )}
+                                {!agency?.wave_number && !agency?.om_number && !agency?.bank_name && (
+                                    <p>{invoice.payment_terms || 'Wave / Orange Money / Virement / Espèces'}</p>
+                                )}
+                                {invoice.due_date && <p><span className="font-bold text-slate-800">Échéance :</span> {fmtDateLong(invoice.due_date)}</p>}
+                                {invoice.quote_number && <p><span className="font-bold text-slate-800">Réf. devis :</span> {invoice.quote_number}</p>}
+                                {invoice.notes && <p><span className="font-bold text-slate-800">Notes :</span> {invoice.notes}</p>}
+                            </div>
+                            {(agency?.wave_number || agency?.payment_link) && (
+                                <PaymentQRCode
+                                    waveNumber={agency?.wave_number}
+                                    amount={invoice.total_amount}
+                                    reference={invoice.invoice_number}
+                                    paymentLink={agency?.payment_link}
+                                    size={70}
+                                />
+                            )}
+                        </div>
                     </div>
                 )}
 

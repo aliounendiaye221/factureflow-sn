@@ -42,6 +42,12 @@ export interface AgencyData {
     ninea?: string | null;
     rccm?: string | null;
     logo_url?: string | null;
+    wave_number?: string | null;
+    om_number?: string | null;
+    whatsapp_number?: string | null;
+    bank_name?: string | null;
+    bank_iban?: string | null;
+    payment_link?: string | null;
 }
 
 export interface InvoiceTemplateProps {

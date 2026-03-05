@@ -45,7 +45,7 @@ export const AgencyService = {
 
   // ─── Mise à jour (profil complet de l'agence) ────────────────────────────
   async updateAgency(
-    payload: Pick<AgencyUpdate, 'name' | 'ninea' | 'rccm' | 'email' | 'phone' | 'address' | 'invoice_template' | 'is_vat_enabled'>
+    payload: Pick<AgencyUpdate, 'name' | 'ninea' | 'rccm' | 'email' | 'phone' | 'address' | 'invoice_template' | 'is_vat_enabled' | 'wave_number' | 'om_number' | 'whatsapp_number' | 'bank_name' | 'bank_iban' | 'payment_link'>
   ): Promise<void> {
     const supabase = createClient()
     const { data: { user } } = await supabase.auth.getUser()

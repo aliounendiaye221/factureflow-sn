@@ -34,6 +34,12 @@ export default async function SettingsPage() {
               logo_url: agency.logo_url ?? null,
               invoice_template: (agency as any).invoice_template ?? 'classic',
               is_vat_enabled: (agency as any).is_vat_enabled ?? true,
+              wave_number: (agency as any).wave_number ?? null,
+              om_number: (agency as any).om_number ?? null,
+              whatsapp_number: (agency as any).whatsapp_number ?? null,
+              bank_name: (agency as any).bank_name ?? null,
+              bank_iban: (agency as any).bank_iban ?? null,
+              payment_link: (agency as any).payment_link ?? null,
             }}
           />
         ) : (

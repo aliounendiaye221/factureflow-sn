@@ -77,7 +77,7 @@ export default function InvoiceRowActions({ invoiceId, status, invoiceNumber, to
 Nous vous contactons au sujet de la facture *${invoiceNumber}* d'un montant de *${formatXOF(total)}*, dont le règlement est *en retard*.
 
 Nous vous serions reconnaissants de bien vouloir procéder au paiement dans les meilleurs délais :
-${process.env.NEXT_PUBLIC_SITE_URL || 'http://www.factureflow.sn'}/print/invoice/${invoiceId}
+${process.env.NEXT_PUBLIC_SITE_URL || 'https://factureflow-sn.vercel.app'}/print/invoice/${invoiceId}
 
 Pour toute question, n'hésitez pas à nous contacter. Merci.`
       : `Bonjour ${clientName || 'Cher client'},
@@ -85,7 +85,7 @@ Pour toute question, n'hésitez pas à nous contacter. Merci.`
 Sauf erreur de notre part, le règlement de la facture *${invoiceNumber}* d'un montant de *${formatXOF(total)}* est en attente.
 
 Vous pouvez consulter et payer votre facture en ligne ici :
-${process.env.NEXT_PUBLIC_SITE_URL || 'http://www.factureflow.sn'}/print/invoice/${invoiceId}
+${process.env.NEXT_PUBLIC_SITE_URL || 'https://factureflow-sn.vercel.app'}/print/invoice/${invoiceId}
 
 Merci de votre confiance !`
     waLink = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`

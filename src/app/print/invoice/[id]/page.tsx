@@ -69,7 +69,13 @@ export default async function InvoicePrintPage({ params }: { params: { id: strin
     address: agency.address,
     ninea: agency.ninea,
     rccm: agency.rccm,
-    logo_url: agency.logo_url
+    logo_url: agency.logo_url,
+    wave_number: (agency as any).wave_number,
+    om_number: (agency as any).om_number,
+    whatsapp_number: (agency as any).whatsapp_number,
+    bank_name: (agency as any).bank_name,
+    bank_iban: (agency as any).bank_iban,
+    payment_link: (agency as any).payment_link,
   } : null
 
   // Sélection du template
@@ -107,6 +113,9 @@ export default async function InvoicePrintPage({ params }: { params: { id: strin
             amount={invoice.total_amount}
             amountObj={{ formatted: fmt(invoice.total_amount), raw: invoice.total_amount }}
             invoiceNumber={invoice.invoice_number}
+            waveNumber={(agency as any)?.wave_number ?? undefined}
+            whatsappNumber={(agency as any)?.whatsapp_number ?? undefined}
+            paymentLink={(agency as any)?.payment_link ?? undefined}
           />
         </div>
       )}

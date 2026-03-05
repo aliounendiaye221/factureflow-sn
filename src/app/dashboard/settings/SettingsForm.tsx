@@ -17,6 +17,12 @@ type Props = {
     logo_url: string | null
     invoice_template: 'classic' | 'modern' | 'elite'
     is_vat_enabled: boolean
+    wave_number: string | null
+    om_number: string | null
+    whatsapp_number: string | null
+    bank_name: string | null
+    bank_iban: string | null
+    payment_link: string | null
   }
   userId: string
 }
@@ -205,6 +211,97 @@ export default function SettingsForm({ defaultValues, userId }: Props) {
             />
             <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
           </label>
+        </div>
+      </div>
+
+      {/* ── Moyens de paiement ──────────────────────────────────── */}
+      <div className="pt-4 border-t border-gray-100">
+        <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
+          Moyens de paiement
+        </h3>
+        <p className="text-xs text-gray-500 mb-4 font-medium">
+          Ces informations apparaîtront sur vos factures pour que vos clients puissent vous payer facilement.
+        </p>
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Numéro Wave */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Numéro Wave</label>
+              <input
+                name="wave_number"
+                type="tel"
+                defaultValue={defaultValues.wave_number ?? ''}
+                placeholder="Ex: 77 123 45 67"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+              />
+            </div>
+
+            {/* Numéro Orange Money */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Numéro Orange Money</label>
+              <input
+                name="om_number"
+                type="tel"
+                defaultValue={defaultValues.om_number ?? ''}
+                placeholder="Ex: 78 987 65 43"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+              />
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Numéro WhatsApp */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">WhatsApp (avec indicatif)</label>
+              <input
+                name="whatsapp_number"
+                type="tel"
+                defaultValue={defaultValues.whatsapp_number ?? ''}
+                placeholder="Ex: 221771234567"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+              />
+              <p className="text-[10px] text-gray-400 mt-1">Utilisé pour les relances et confirmations de paiement</p>
+            </div>
+
+            {/* Lien de paiement */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Lien de paiement</label>
+              <input
+                name="payment_link"
+                type="url"
+                defaultValue={defaultValues.payment_link ?? ''}
+                placeholder="https://pay.wave.com/m/..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+              />
+              <p className="text-[10px] text-gray-400 mt-1">Lien Wave Business ou autre plateforme de paiement</p>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Nom de la banque */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">Banque (optionnel)</label>
+              <input
+                name="bank_name"
+                type="text"
+                defaultValue={defaultValues.bank_name ?? ''}
+                placeholder="Ex: CBAO, BOA, Ecobank..."
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800"
+              />
+            </div>
+
+            {/* IBAN */}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">IBAN / RIB (optionnel)</label>
+              <input
+                name="bank_iban"
+                type="text"
+                defaultValue={defaultValues.bank_iban ?? ''}
+                placeholder="SN00 0000 0000 0000 0000 0000"
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:outline-none text-gray-800 font-mono text-sm"
+              />
+            </div>
+          </div>
         </div>
       </div>
 

@@ -2,36 +2,46 @@
 
 import { useState } from 'react'
 import { Copy, CheckCircle2, MessageCircle, Smartphone } from 'lucide-react'
+import PaymentQRCode from '@/components/PaymentQRCode'
 
-const WAVE_NUMBER = process.env.NEXT_PUBLIC_WAVE_NUMBER ?? '78 000 00 00'
-const SUPPORT_WA  = process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP ?? '221780000000'
+const FALLBACK_WAVE = process.env.NEXT_PUBLIC_WAVE_NUMBER ?? '78 000 00 00'
+const FALLBACK_WA  = process.env.NEXT_PUBLIC_SUPPORT_WHATSAPP ?? '221780000000'
 
 export default function MobileMoneyForm({
     invoiceId,
     amount,
     amountObj,
     invoiceNumber,
+    waveNumber,
+    whatsappNumber,
+    paymentLink,
 }: {
     invoiceId: string
     amount: number
     amountObj: { formatted: string; raw: number }
     invoiceNumber?: string
+    waveNumber?: string
+    whatsappNumber?: string
+    paymentLink?: string
 }) {
     const [copied, setCopied] = useState(false)
+
+    const activeWave = waveNumber || FALLBACK_WAVE
+    const activeWA = whatsappNumber || FALLBACK_WA
 
     const ref = invoiceNumber ?? invoiceId.slice(0, 8).toUpperCase()
     const waMessage =
         `Bonjour, je viens de payer la facture *${ref}* d'un montant de *${amountObj.formatted}* via Wave.\n\n` +
         `(Je joins la capture d'écran du paiement Wave ci-dessous)`
-    const waLink = `https://wa.me/${SUPPORT_WA}?text=${encodeURIComponent(waMessage)}`
+    const waLink = `https://wa.me/${activeWA}?text=${encodeURIComponent(waMessage)}`
 
     const handleCopy = async () => {
         try {
-            await navigator.clipboard.writeText(WAVE_NUMBER)
+            await navigator.clipboard.writeText(activeWave)
             setCopied(true)
             setTimeout(() => setCopied(false), 2500)
         } catch {
-            alert(`Numéro Wave : ${WAVE_NUMBER}`)
+            alert(`Numéro Wave : ${activeWave}`)
         }
     }
 
@@ -68,7 +78,7 @@ export default function MobileMoneyForm({
                             </p>
                             <div className="flex items-center gap-2 mt-2">
                                 <code className="bg-gray-100 px-3 py-1.5 rounded-lg font-mono font-bold text-gray-900 text-sm">
-                                    {WAVE_NUMBER}
+                                    {activeWave}
                                 </code>
                                 <button
                                     onClick={handleCopy}
@@ -105,6 +115,19 @@ export default function MobileMoneyForm({
                         </div>
                     </li>
                 </ol>
+
+                {/* QR Code de paiement */}
+                {(waveNumber || paymentLink) && (
+                    <div className="flex justify-center pt-4 border-t border-gray-100">
+                        <PaymentQRCode
+                            waveNumber={waveNumber}
+                            amount={amount}
+                            reference={ref}
+                            paymentLink={paymentLink}
+                            size={120}
+                        />
+                    </div>
+                )}
 
                 <p className="text-xs text-gray-400 text-center pt-4 border-t border-gray-100">
                     Votre facture sera marquée comme payée dès confirmation du paiement.

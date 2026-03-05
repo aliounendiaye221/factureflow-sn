@@ -86,7 +86,7 @@ export async function inviteTeamMemberAction(
   const roleData = await RbacService.getUserRole()
   if (!roleData?.agency_id) return { message: "Agence introuvable." }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://www.factureflow.sn'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factureflow-sn.vercel.app'
   const supabaseAdmin = createAdminClient()
 
   const { error } = await supabaseAdmin.auth.admin.inviteUserByEmail(email, {

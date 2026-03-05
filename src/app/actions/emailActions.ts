@@ -6,7 +6,7 @@ import { revalidatePath } from 'next/cache'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 const FROM_EMAIL = process.env.RESEND_FROM_EMAIL ?? 'noreply@factureflow.sn'
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'http://www.factureflow.sn'
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://factureflow-sn.vercel.app'
 
 function fmt(n: number) {
   return new Intl.NumberFormat('fr-SN', {

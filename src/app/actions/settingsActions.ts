@@ -14,6 +14,12 @@ const AgencySchema = z.object({
   address: z.string().max(300).optional().or(z.literal('')),
   invoice_template: z.enum(['classic', 'modern', 'elite']).optional(),
   is_vat_enabled: z.preprocess((val) => val === 'on', z.boolean()).optional(),
+  wave_number: z.string().max(20).optional().or(z.literal('')),
+  om_number: z.string().max(20).optional().or(z.literal('')),
+  whatsapp_number: z.string().max(20).optional().or(z.literal('')),
+  bank_name: z.string().max(100).optional().or(z.literal('')),
+  bank_iban: z.string().max(50).optional().or(z.literal('')),
+  payment_link: z.string().max(500).optional().or(z.literal('')),
 })
 
 export type SettingsState = {
@@ -40,6 +46,12 @@ export async function updateAgencyAction(
     address: formData.get('address') as string,
     invoice_template: formData.get('invoice_template') as string,
     is_vat_enabled: formData.get('is_vat_enabled') as string,
+    wave_number: formData.get('wave_number') as string,
+    om_number: formData.get('om_number') as string,
+    whatsapp_number: formData.get('whatsapp_number') as string,
+    bank_name: formData.get('bank_name') as string,
+    bank_iban: formData.get('bank_iban') as string,
+    payment_link: formData.get('payment_link') as string,
   }
 
   const parsed = AgencySchema.safeParse(raw)
@@ -57,6 +69,12 @@ export async function updateAgencyAction(
       address: parsed.data.address || null,
       invoice_template: parsed.data.invoice_template || 'classic',
       is_vat_enabled: parsed.data.is_vat_enabled ?? true,
+      wave_number: parsed.data.wave_number || null,
+      om_number: parsed.data.om_number || null,
+      whatsapp_number: parsed.data.whatsapp_number || null,
+      bank_name: parsed.data.bank_name || null,
+      bank_iban: parsed.data.bank_iban || null,
+      payment_link: parsed.data.payment_link || null,
     })
     revalidatePath('/dashboard/settings')
     return { success: true, message: 'Paramètres enregistrés avec succès.' }

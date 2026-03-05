@@ -58,7 +58,7 @@ export default function QuoteRowActions({ quoteId, status, hasBilling, canDelete
     deleteAction(formData)
   }
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://www.factureflow.sn'
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://factureflow-sn.vercel.app'
   let waLink = ''
   if (clientPhone) {
     const cleanPhone = clientPhone.replace(/\D/g, '')
