@@ -33,7 +33,7 @@ export async function POST(request: NextRequest) {
   const admin = createAdminClient()
   await admin.from('page_views').insert({
     user_id: user.id,
-    agency_id: agencyId ?? user.id,
+    agency_id: agencyId ?? null,
     path,
   })
 

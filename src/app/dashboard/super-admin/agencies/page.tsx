@@ -1,6 +1,5 @@
 import { SuperAdminService } from '@/services/superAdminService'
-import { PLANS, type PlanId } from '@/lib/plans'
-import { Building2, Ban, RotateCcw, Trash2, ExternalLink } from 'lucide-react'
+import { Ban, ExternalLink } from 'lucide-react'
 import PlanSelector from '../PlanSelector'
 import AgencyActions from './AgencyActions'
 import Link from 'next/link'

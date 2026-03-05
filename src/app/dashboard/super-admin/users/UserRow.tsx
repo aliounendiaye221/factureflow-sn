@@ -35,7 +35,7 @@ export default function UserRow({ user }: { user: PlatformUser }) {
         setMsg(null)
         const fd = new FormData()
         fd.set('userId', user.id)
-        fd.set('newRole', newRole)
+        fd.set('role', newRole)
         const result = await changeUserRoleAction({ success: false, message: '' }, fd)
         setMsg(result.message)
         if (result.success) window.location.reload()

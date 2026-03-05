@@ -534,11 +534,13 @@ export const SuperAdminService = {
         const supabase = createAdminClient()
 
         // Supprimer dans l'ordre des dépendances
+        await supabase.from('support_tickets').delete().eq('agency_id', agencyId)
         await supabase.from('page_views').delete().eq('agency_id', agencyId)
         await supabase.from('event_logs').delete().eq('agency_id', agencyId)
         await supabase.from('payments').delete().eq('agency_id', agencyId)
         await supabase.from('invoices').delete().eq('agency_id', agencyId)
         await supabase.from('quotes').delete().eq('agency_id', agencyId)
+        await supabase.from('catalog_items').delete().eq('agency_id', agencyId)
         await supabase.from('clients').delete().eq('agency_id', agencyId)
 
         // Supprimer les users de l'agence
