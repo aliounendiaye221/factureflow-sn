@@ -1,1 +1,0 @@
-cefe991 refactor: compact professional invoice/quote templates - single A4 page

@@ -1,3 +1,0 @@
-4e8ce97 feat: moyens de paiement par agence et QR code
-e89ab88 feat: moyens de paiement par agence + QR code + landing page + SEO
-cefe991 refactor: compact professional invoice/quote templates - single A4 page
