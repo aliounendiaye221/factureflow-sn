@@ -43,13 +43,13 @@ export default async function BillingPage() {
         <div className="max-w-4xl mx-auto space-y-10">
             {/* Header */}
             <div>
-                <h2 className="text-3xl font-bold text-gray-900 tracking-tight">Abonnement & Facturation</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight">Abonnement & Facturation</h2>
                 <p className="text-gray-500 mt-1">Gérez votre plan et suivez votre utilisation.</p>
             </div>
 
             {/* Plan actuel */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-                <div className="p-6 border-b border-gray-100 flex items-start justify-between gap-4">
+                <div className="p-4 sm:p-6 border-b border-gray-100 flex flex-col sm:flex-row sm:items-start justify-between gap-4">
                     <div>
                         <div className="flex items-center gap-2 mb-1">
                             <Crown className={`w-5 h-5 ${currentPlanId === 'free' ? 'text-gray-400' : 'text-amber-500'}`} />

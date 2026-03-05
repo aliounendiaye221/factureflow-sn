@@ -175,12 +175,12 @@ export default function NewInvoiceModal({
 
       <dialog
         ref={dialogRef}
-        className="w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/50"
+        className="w-[calc(100%-1rem)] sm:w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/50"
         onClose={closeModal}
       >
         <div className="bg-white rounded-2xl max-h-[92vh] flex flex-col">
 
-          <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-100 shrink-0">
             <h2 className="text-lg font-bold text-gray-900">Nouvelle facture</h2>
             <button type="button" onClick={closeModal} className="text-gray-400 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100">
               <X className="w-5 h-5" />

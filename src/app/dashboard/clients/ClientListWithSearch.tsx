@@ -50,12 +50,12 @@ export default function ClientListWithSearch({
             <table className="min-w-full divide-y divide-gray-200 text-sm">
               <thead className="bg-gray-50/50">
                 <tr>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-600">Client</th>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-600">Contact</th>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-600">Identifiants légaux</th>
-                  <th className="px-6 py-4 text-right font-semibold text-gray-600">Total facturé</th>
-                  <th className="px-6 py-4 text-right font-semibold text-gray-600">En attente</th>
-                  {canEdit && <th className="px-6 py-4" />}
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-gray-600">Client</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-gray-600 hidden sm:table-cell">Contact</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-gray-600 hidden lg:table-cell">Identifiants légaux</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-semibold text-gray-600">Total facturé</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-semibold text-gray-600 hidden md:table-cell">En attente</th>
+                  {canEdit && <th className="px-3 sm:px-6 py-3 sm:py-4" />}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
@@ -63,22 +63,23 @@ export default function ClientListWithSearch({
                   const s: ClientStat = stats[client.id] ?? { total_billed: 0, invoice_count: 0, unpaid_total: 0 }
                   return (
                     <tr key={client.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                         <p className="font-semibold text-gray-900">{client.name}</p>
                         {client.city && (
                           <p className="text-gray-400 text-xs">{client.city}{client.country ? `, ${client.country}` : ''}</p>
                         )}
+                        <p className="text-gray-500 text-xs sm:hidden">{client.phone || client.email || ''}</p>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap hidden sm:table-cell">
                         <p className="text-gray-900 font-medium">{client.phone || '-'}</p>
                         <p className="text-gray-500 text-xs">{client.email || 'Aucun email'}</p>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap hidden lg:table-cell">
                         <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-gray-100 text-gray-700 font-mono text-xs font-medium border border-gray-200">
                           {client.tax_id || 'Non renseigné'}
                         </span>
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right">
                         {s.invoice_count > 0 ? (
                           <>
                             <p className="font-semibold text-gray-900">{formatXOF(s.total_billed)}</p>
@@ -88,7 +89,7 @@ export default function ClientListWithSearch({
                           <span className="text-gray-400 text-xs">—</span>
                         )}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right hidden md:table-cell">
                         {s.unpaid_total > 0 ? (
                           <span className="inline-flex px-2.5 py-1 rounded-md text-xs font-semibold bg-yellow-50 text-yellow-700 border border-yellow-200">
                             {formatXOF(s.unpaid_total)}
@@ -98,7 +99,7 @@ export default function ClientListWithSearch({
                         )}
                       </td>
                       {canEdit && (
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right">
                           <div className="flex items-center justify-end gap-2">
                             <EditClientModal client={client} />
                             {canDelete && (

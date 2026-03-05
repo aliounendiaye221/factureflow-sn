@@ -85,8 +85,8 @@ export default async function InventoryPage() {
                                                     {inv.invoice_number}
                                                 </Link>
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{inv.client?.name}</td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{formatDate(inv.paid_at)}</td>
+                                            <td className="px-4 md:px-6 py-4 text-sm text-gray-600">{inv.client?.name}</td>
+                                            <td className="px-4 md:px-6 py-4 text-sm text-gray-600 hidden sm:table-cell">{formatDate(inv.paid_at)}</td>
                                             <td className="px-6 py-4 text-right font-bold text-gray-900">{formatXOF(Number(inv.total_amount))}</td>
                                         </tr>
                                     ))
@@ -126,8 +126,8 @@ export default async function InventoryPage() {
                                                     {q.quote_number}
                                                 </Link>
                                             </td>
-                                            <td className="px-6 py-4 text-sm text-gray-600">{q.client?.name}</td>
-                                            <td className="px-6 py-4 text-sm">
+                                            <td className="px-4 md:px-6 py-4 text-sm text-gray-600">{q.client?.name}</td>
+                                            <td className="px-4 md:px-6 py-4 text-sm hidden sm:table-cell">
                                                 <span className="px-2 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold uppercase rounded-md">Accepté</span>
                                             </td>
                                             <td className="px-6 py-4 text-right font-bold text-gray-900">{formatXOF(Number(q.total_amount))}</td>

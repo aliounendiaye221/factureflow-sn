@@ -42,7 +42,7 @@ export default async function DashboardPage() {
     <div className="space-y-8 animate-fade-in-up">
 
       {/* ── Header ── */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-5">
+      <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 sm:gap-5">
         <div>
           <div className="flex items-center gap-2 mb-1">
             <Activity className="w-4 h-4 text-blue-500" />
@@ -75,7 +75,7 @@ export default async function DashboardPage() {
       {stats.overdueCount > 0 && (
         <Link
           href="/dashboard/invoices"
-          className="group flex items-center justify-between gap-4 bg-red-50 border border-red-200 rounded-2xl px-6 py-4 hover:bg-red-100 transition-colors"
+          className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 bg-red-50 border border-red-200 rounded-2xl px-4 sm:px-6 py-3 sm:py-4 hover:bg-red-100 transition-colors"
         >
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 bg-red-100 rounded-xl flex items-center justify-center flex-shrink-0">
@@ -88,14 +88,14 @@ export default async function DashboardPage() {
               <p className="text-red-600 text-xs mt-0.5">Relancez vos clients maintenant pour encaisser plus vite</p>
             </div>
           </div>
-          <div className="flex items-center gap-1.5 text-red-700 font-semibold text-sm group-hover:gap-2.5 transition-all">
+          <div className="flex items-center gap-1.5 text-red-700 font-semibold text-xs sm:text-sm group-hover:gap-2.5 transition-all whitespace-nowrap">
             Voir et relancer <ArrowRight className="w-4 h-4" />
           </div>
         </Link>
       )}
 
       {/* ── HERO KPI — Montant à encaisser ── */}
-      <div className="relative bg-white border border-gray-200 rounded-3xl p-8 overflow-hidden shadow-sm">
+      <div className="relative bg-white border border-gray-200 rounded-3xl p-5 sm:p-8 overflow-hidden shadow-sm">
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3 pointer-events-none" />
 
         <div className="relative z-10">

@@ -72,12 +72,12 @@ export default function QuoteListWithSearch({
             <table className="min-w-full divide-y divide-gray-200 text-sm">
               <thead className="bg-gray-50/50">
                 <tr>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">Num\u00e9ro</th>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">Client</th>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">Date</th>
-                  <th className="px-6 py-4 text-right font-semibold text-gray-600">Total TTC</th>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-600">Statut</th>
-                  {canEdit && <th className="px-6 py-4" />}
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600">Numéro</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600">Client</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600 hidden md:table-cell">Date</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-semibold text-gray-600 hidden sm:table-cell">Total TTC</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-gray-600">Statut</th>
+                  {canEdit && <th className="px-3 sm:px-6 py-3 sm:py-4" />}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
@@ -86,25 +86,25 @@ export default function QuoteListWithSearch({
                   const hasBilling = Array.isArray(quote.invoices) && quote.invoices.length > 0
                   return (
                     <tr key={quote.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap font-bold text-blue-600">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap font-bold text-blue-600">
                         {quote.quote_number}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-gray-900 font-medium">
                         {quote.client?.name ?? '-'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-gray-500 hidden md:table-cell">
                         {formatDate(quote.created_at)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right font-bold text-gray-900">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right font-bold text-gray-900 hidden sm:table-cell">
                         {formatXOF(quote.total_amount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2.5 py-1 rounded-md text-xs font-semibold ${s.className}`}>
                           {s.label}
                         </span>
                       </td>
                       {canEdit && (
-                        <td className="px-6 py-4 whitespace-nowrap text-right">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right">
                           <QuoteRowActions
                             quoteId={quote.id}
                             status={quote.status}

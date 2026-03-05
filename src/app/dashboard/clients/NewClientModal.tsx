@@ -36,7 +36,7 @@ export default function NewClientModal() {
       {/* Modal natif HTML */}
       <dialog
         ref={dialogRef}
-        className="w-full max-w-md rounded-xl p-0 shadow-2xl backdrop:bg-black/50"
+        className="w-[calc(100%-1rem)] sm:w-full max-w-md rounded-xl p-0 shadow-2xl backdrop:bg-black/50"
         onClose={closeModal}
       >
         <div className="bg-white rounded-xl">

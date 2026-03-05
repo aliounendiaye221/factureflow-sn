@@ -95,7 +95,7 @@ export default function EditInvoiceModal({
 
             <dialog
                 ref={dialogRef}
-                className="w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/50"
+                className="w-[calc(100%-1rem)] sm:w-full max-w-2xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/50"
                 onClose={closeModal}
             >
                 <div className="bg-white rounded-2xl max-h-[92vh] flex flex-col text-left">

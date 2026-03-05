@@ -76,12 +76,12 @@ export default function InvoiceListWithSearch({
             <table className="min-w-full divide-y divide-gray-200 text-sm">
               <thead className="bg-gray-50/50">
                 <tr>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">Num\u00e9ro</th>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">Client</th>
-                  <th className="px-6 py-4 text-left font-bold text-gray-600">\u00c9ch\u00e9ance</th>
-                  <th className="px-6 py-4 text-right font-semibold text-gray-600">Total TTC</th>
-                  <th className="px-6 py-4 text-left font-semibold text-gray-600">Statut</th>
-                  {canEdit && <th className="px-6 py-4" />}
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600">Numéro</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600">Client</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-bold text-gray-600 hidden md:table-cell">Échéance</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-right font-semibold text-gray-600 hidden sm:table-cell">Total TTC</th>
+                  <th className="px-3 sm:px-6 py-3 sm:py-4 text-left font-semibold text-gray-600">Statut</th>
+                  {canEdit && <th className="px-3 sm:px-6 py-3 sm:py-4" />}
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-100">
@@ -89,26 +89,26 @@ export default function InvoiceListWithSearch({
                   const s = STATUS_LABELS[inv.status] ?? STATUS_LABELS['unpaid']
                   return (
                     <tr key={inv.id} className="hover:bg-gray-50/50 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap font-bold text-blue-600">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap font-bold text-blue-600">
                         {inv.invoice_number}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-900 font-medium truncate max-w-[100px] md:max-w-[150px]">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-gray-900 font-medium truncate max-w-[100px] md:max-w-[150px]">
                         {inv.client?.name ?? '-'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-gray-500">
-                        {inv.due_date ? formatDate(inv.due_date) : '\u2014'}
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-gray-500 hidden md:table-cell">
+                        {inv.due_date ? formatDate(inv.due_date) : '—'}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap text-right font-bold text-gray-900">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap text-right font-bold text-gray-900 hidden sm:table-cell">
                         {formatXOF(inv.total_amount)}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
                         <span className={`inline-flex px-2.5 py-1 rounded-md text-xs font-semibold ${s.className}`}>
                           {s.label}
                         </span>
                       </td>
                       {canEdit && (
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <div className="flex items-center justify-end gap-2">
+                        <td className="px-3 sm:px-6 py-3 sm:py-4 whitespace-nowrap">
+                          <div className="flex items-center justify-end gap-1 sm:gap-2">
                             <EditInvoiceModal
                               invoiceId={inv.id}
                               status={inv.status}

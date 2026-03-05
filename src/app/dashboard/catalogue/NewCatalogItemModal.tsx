@@ -33,7 +33,7 @@ export default function NewCatalogItemModal() {
 
       <dialog
         ref={dialogRef}
-        className="w-full max-w-lg rounded-2xl p-0 shadow-2xl backdrop:bg-black/40"
+        className="w-[calc(100%-1rem)] sm:w-full max-w-lg rounded-2xl p-0 shadow-2xl backdrop:bg-black/40"
         onClose={() => dialogRef.current?.close()}
       >
         <div className="bg-white rounded-2xl">

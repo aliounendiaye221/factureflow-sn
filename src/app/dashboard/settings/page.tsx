@@ -15,12 +15,12 @@ export default async function SettingsPage() {
 
   return (
     <div>
-      <h2 className="text-3xl font-bold mb-2 text-gray-800">Paramètres de l'agence</h2>
+      <h2 className="text-2xl sm:text-3xl font-bold mb-2 text-gray-800">Paramètres de l'agence</h2>
       <p className="text-gray-500 text-sm mb-8">
         Ces informations apparaîtront sur vos devis et factures.
       </p>
 
-      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-8 max-w-2xl">
+      <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 sm:p-8 max-w-2xl">
         {agency && user ? (
           <SettingsForm
             userId={user.id}

@@ -159,12 +159,12 @@ export default function NewQuoteModal({
 
       <dialog
         ref={dialogRef}
-        className="w-full max-w-3xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95"
+        className="w-[calc(100%-1rem)] sm:w-full max-w-3xl rounded-2xl p-0 shadow-2xl backdrop:bg-black/40 backdrop:backdrop-blur-sm open:animate-in open:fade-in open:zoom-in-95"
         onClose={closeModal}
       >
         <div className="bg-white rounded-2xl max-h-[90vh] flex flex-col">
           {/* En-tête */}
-          <div className="flex items-center justify-between px-8 py-5 border-b border-gray-100 shrink-0">
+          <div className="flex items-center justify-between px-4 sm:px-8 py-4 sm:py-5 border-b border-gray-100 shrink-0">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-primary-50 rounded-lg">
                 <ReceiptText className="w-5 h-5 text-primary" />
@@ -178,7 +178,7 @@ export default function NewQuoteModal({
 
           {/* Formulaire scrollable */}
           <form ref={formRef} action={formAction} className="overflow-y-auto flex-1">
-            <div className="px-8 py-6 space-y-8">
+            <div className="px-4 sm:px-8 py-4 sm:py-6 space-y-6 sm:space-y-8">
 
               {/* Erreur globale */}
               {!state.success && state.message && (
