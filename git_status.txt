@@ -1,0 +1,3 @@
+A  git_log.txt
+?? commit_result.txt
+?? git_status.txt
