@@ -111,7 +111,7 @@ export default async function QuotePrintPage({ params }: { params: { id: string 
   return (
     <div className="min-h-screen bg-gray-50/50 pb-32 print:pb-0">
       <PrintControls />
-      <div className="max-w-[1000px] mx-auto md:my-10 bg-white md:shadow-2xl md:rounded-3xl overflow-hidden print:shadow-none print:my-0 print:max-w-none">
+      <div className="max-w-[800px] mx-auto md:my-6 bg-white md:shadow-xl md:rounded-2xl overflow-hidden print:shadow-none print:my-0 print:max-w-none print:rounded-none">
         {renderTemplate()}
       </div>
 
