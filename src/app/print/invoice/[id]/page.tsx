@@ -47,6 +47,7 @@ export default async function InvoicePrintPage({ params }: { params: { id: strin
       description: item.description,
       quantity: item.quantity,
       unit_price: item.unit_price,
+      tax_rate: item.tax_rate ?? 18,
     })),
     client: invoice.client ? {
       id: invoice.client.id,
@@ -56,6 +57,9 @@ export default async function InvoicePrintPage({ params }: { params: { id: strin
       address: invoice.client.address,
       tax_id: invoice.client.tax_id,
     } : null,
+    notes: (invoice as any).notes ?? null,
+    payment_terms: (invoice as any).payment_terms ?? null,
+    quote_number: invoice.quote?.quote_number ?? null,
   }
 
   const agencyData: AgencyData | null = agency ? {

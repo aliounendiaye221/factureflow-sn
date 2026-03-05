@@ -3,6 +3,7 @@
 import { SuperAdminService } from '@/services/superAdminService'
 import { RbacService } from '@/services/rbacService'
 import { revalidatePath } from 'next/cache'
+import { isRedirectError } from 'next/dist/client/components/redirect'
 import { PLANS, type PlanId } from '@/lib/plans'
 
 export type ActivateSubscriptionState = {
@@ -41,6 +42,7 @@ export async function activateSubscriptionAction(
       message: `Plan "${PLANS[planId as PlanId].name}" activé avec succès.`,
     }
   } catch (err: unknown) {
+    if (isRedirectError(err)) throw err
     const msg = err instanceof Error ? err.message : 'Erreur inconnue'
     return { success: false, message: msg }
   }

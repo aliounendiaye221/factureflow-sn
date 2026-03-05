@@ -6,6 +6,7 @@ export interface InvoiceItem {
     description: string;
     quantity: number;
     unit_price: number;
+    tax_rate: number;
 }
 
 export interface InvoiceData {
@@ -27,6 +28,10 @@ export interface InvoiceData {
         address?: string | null;
         tax_id?: string | null;
     } | null;
+    notes?: string | null;
+    payment_terms?: string | null;
+    quote_number?: string | null;
+    validity_days?: number | null;
 }
 
 export interface AgencyData {

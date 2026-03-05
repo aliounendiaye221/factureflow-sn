@@ -3,6 +3,7 @@
 import { SuperAdminService } from '@/services/superAdminService'
 import { RbacService } from '@/services/rbacService'
 import { revalidatePath } from 'next/cache'
+import { isRedirectError } from 'next/dist/client/components/redirect'
 import type { AppRole } from '@/lib/roles'
 
 export type AdminActionState = {
@@ -21,6 +22,7 @@ export async function suspendAgencyAction(agencyId: string): Promise<AdminAction
         revalidatePath('/dashboard/super-admin')
         return { success: true, message: 'Agence suspendue avec succès.' }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }
@@ -34,6 +36,7 @@ export async function reactivateAgencyAction(agencyId: string): Promise<AdminAct
         revalidatePath('/dashboard/super-admin')
         return { success: true, message: 'Agence réactivée avec succès.' }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }
@@ -47,6 +50,7 @@ export async function deleteAgencyAction(agencyId: string): Promise<AdminActionS
         revalidatePath('/dashboard/super-admin')
         return { success: true, message: 'Agence supprimée définitivement.' }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }
@@ -62,6 +66,7 @@ export async function deleteUserAction(userId: string): Promise<AdminActionState
         revalidatePath('/dashboard/super-admin/users')
         return { success: true, message: 'Utilisateur supprimé.' }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }
@@ -86,6 +91,7 @@ export async function changeUserRoleAction(
         revalidatePath('/dashboard/super-admin/users')
         return { success: true, message: `Rôle changé en "${newRole}".` }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }
@@ -110,6 +116,7 @@ export async function updateTicketAction(
         revalidatePath('/dashboard/super-admin/support')
         return { success: true, message: 'Ticket mis à jour.' }
     } catch (err: unknown) {
+        if (isRedirectError(err)) throw err
         return { success: false, message: err instanceof Error ? err.message : 'Erreur inconnue' }
     }
 }

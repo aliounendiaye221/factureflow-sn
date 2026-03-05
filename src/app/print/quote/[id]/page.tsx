@@ -55,6 +55,7 @@ export default async function QuotePrintPage({ params }: { params: { id: string 
       description: item.description,
       quantity: item.quantity,
       unit_price: item.unit_price,
+      tax_rate: item.tax_rate ?? 18,
     })),
     client: quote.client ? {
       name: quote.client.name,
@@ -64,6 +65,8 @@ export default async function QuotePrintPage({ params }: { params: { id: string 
       tax_id: quote.client.tax_id,
     } : null,
     paid_at: null,
+    notes: (quote as any).notes ?? null,
+    validity_days: (quote as any).validity_days ?? 30,
   }
 
   const selectedTemplate = (agency as any)?.invoice_template || 'classic'

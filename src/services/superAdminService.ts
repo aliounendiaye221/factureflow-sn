@@ -1,5 +1,4 @@
 import { createAdminClient } from '@/lib/supabase/admin'
-import { RbacService } from './rbacService'
 import type { AppRole } from '@/lib/roles'
 
 export type AgencyStats = {
@@ -95,7 +94,6 @@ export const SuperAdminService = {
      * Récupère la liste de toutes les agences avec des statistiques basiques
      */
     async getAgenciesStats(): Promise<AgencyStats[]> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         // On récupère toutes les agences
@@ -151,7 +149,6 @@ export const SuperAdminService = {
      * Récupère les logs du système ou des erreurs
      */
     async getEventLogs(limit = 100): Promise<EventLog[]> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { data, error } = await supabase
@@ -168,7 +165,6 @@ export const SuperAdminService = {
      * Calcule les KPIs globaux
      */
     async getGlobalKPIs() {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         // Total agences
@@ -204,7 +200,6 @@ export const SuperAdminService = {
      * Stats abonnements : nombre d'abonnés par plan, MRR, abonnements expirant bientôt
      */
     async getSubscriptionStats() {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { data: agencies } = await supabase
@@ -240,7 +235,6 @@ export const SuperAdminService = {
      * Historique des visites : stats journalières (7 derniers jours), pages les plus visitées, agences actives
      */
     async getPageViewStats(): Promise<{ daily: PageViewStats[]; topPages: TopPage[]; activeAgencies: ActiveAgency[]; totalViews: number }> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const sevenDaysAgo = new Date()
@@ -321,7 +315,6 @@ export const SuperAdminService = {
      * Change le plan d'abonnement d'une agence (après validation paiement Wave)
      */
     async updateAgencyPlan(agencyId: string, newPlan: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const now = new Date()
@@ -359,7 +352,6 @@ export const SuperAdminService = {
     // ═══════════════════════════════════════════════════════════════════
 
     async getAllUsers(): Promise<PlatformUser[]> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { data: { users } } = await supabase.auth.admin.listUsers()
@@ -384,7 +376,6 @@ export const SuperAdminService = {
     },
 
     async deleteUser(userId: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         // Supprimer le rôle
@@ -403,7 +394,6 @@ export const SuperAdminService = {
     },
 
     async changeUserRole(userId: string, newRole: AppRole): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { error } = await supabase
@@ -427,7 +417,6 @@ export const SuperAdminService = {
     // ═══════════════════════════════════════════════════════════════════
 
     async getAgencyDetail(agencyId: string): Promise<AgencyDetail | null> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { data: agency } = await supabase
@@ -490,7 +479,6 @@ export const SuperAdminService = {
     // ═══════════════════════════════════════════════════════════════════
 
     async suspendAgency(agencyId: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { error } = await supabase
@@ -510,7 +498,6 @@ export const SuperAdminService = {
     },
 
     async reactivateAgency(agencyId: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { error } = await supabase
@@ -530,7 +517,6 @@ export const SuperAdminService = {
     },
 
     async deleteAgency(agencyId: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         // Supprimer dans l'ordre des dépendances
@@ -570,7 +556,6 @@ export const SuperAdminService = {
     // ═══════════════════════════════════════════════════════════════════
 
     async getSupportTickets(): Promise<SupportTicket[]> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const { data, error } = await supabase
@@ -599,7 +584,6 @@ export const SuperAdminService = {
     },
 
     async updateTicketStatus(ticketId: string, status: string, adminNotes?: string): Promise<void> {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const payload: Record<string, any> = { status }
@@ -618,7 +602,6 @@ export const SuperAdminService = {
     // ═══════════════════════════════════════════════════════════════════
 
     async getPlatformStats() {
-        await RbacService.requireRole(['super_admin'])
         const supabase = createAdminClient()
 
         const [invoices, quotes, clients, payments] = await Promise.all([
